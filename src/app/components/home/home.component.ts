@@ -10,7 +10,6 @@ import { ButtonPopupComponent } from '../button-popup/button-popup.component';
 import { ProcessPopupComponent } from '../process-popup/process-popup.component';
 import { HttpClient } from '@angular/common/http';
 import { TableDataModel } from '../../models/tabledatamodel';
-import { MatPaginator } from '@angular/material/paginator';
 import { HomeServiceService } from '../../services/home-service.service';
 import { ProcessServiceService } from '../../services/process-service.service';
 
@@ -25,16 +24,16 @@ const ELEMENT_DATA: TableDataModel[] = [];
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit  {
-  displayedColumns: string[] = ['COLUMN_0', 'COLUMN_1', 'COLUMN_2', 'COLUMN_3', 'COLUMN_4'];
+  displayedColumns: string[] = ['SELECT', 'COLUMN_0', 'COLUMN_1', 'COLUMN_2', 'COLUMN_3', 'COLUMN_4'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   name: string='';
   selectedRow: string[] = [];
+  totalSelected: number = 0;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, @Inject(DOCUMENT) document: Document, public dialog: MatDialog,
   private http: HttpClient, private service: HomeServiceService, private processService: ProcessServiceService) { }
 
   @ViewChild(MatSort) sort = new MatSort();
-  @ViewChild(MatPaginator, {static: false}) paginator: any;
 
   ngOnInit(): void {
     this.http.get('assets/SAMPLE_INPUT.txt', { responseType: 'text' as 'json'}).subscribe(data => {
@@ -45,6 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
           return item.trim();
         });
         var model = new TableDataModel();
+        model.SELECT = parseInt(elements[0]);
         model.COLUMN_0 = elements[0];
         model.COLUMN_1 = elements[1];
         model.COLUMN_2 = elements[2];
@@ -55,15 +55,12 @@ export class HomeComponent implements OnInit, AfterViewInit  {
       }
       this.dataSource = new MatTableDataSource(ELEMENT_DATA);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     })
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
   announceSortChange(sortState: Sort) {
-    this.selectedRow = [];
     // This example uses English messages. If your application supports
     // multiple language, you would internationalize these strings.
     // Furthermore, you can customize the message to add additional
@@ -79,24 +76,10 @@ export class HomeComponent implements OnInit, AfterViewInit  {
 
   showDetails(event: any)
   {
-    var has = false;
-    var rowString = this.getSelectedRowString(event);
-    this.selectedRow.forEach((element, index)=>{
-      if(element === rowString) {
-        has = true;
-      };
-   });
-   if(has){
-      var content = this.selectedRow.map(element=> element).join("\n");
-      var fileName = "SAMPLE_OUTPUT.txt";
-      this.saveTextAsFile(content, fileName);
-   }
-   else{
     this.service.populateForm(event);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "20%";
     this.dialog.open(DetailPopupComponent,dialogConfig);
-   }
   }
 
   saveTextAsFile (data :any, filename: string){
@@ -162,20 +145,24 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     }
     return rowString;
   }
-  selectRow(event: any, row: any){
-    console.log(event);
+  selectRow(row: any){
     var rowString = this.getSelectedRowString(row);
-    var element = (<HTMLInputElement>document.getElementById("tbl-tr-" + row.COLUMN_0));
-    if(element.classList.contains("row-clicked")){
-      element.classList.remove("row-clicked");
+    var element = (<HTMLInputElement>document.getElementById("checkbox-" + row.SELECT));
+    if(element.checked){
+      this.selectedRow.push(rowString);
+    }
+    else{
       this.selectedRow.forEach((element, index)=>{
         if(element === rowString) this.selectedRow.splice(index,1);
      });
     }
-    else{
-      element.classList.add("row-clicked");
-      this.selectedRow.push(rowString);
-    }
+    this.totalSelected = this.selectedRow.length;
+  }
+
+  downloadSelected(){
+    var content = this.selectedRow.map(element=> element).join("\n");
+      var fileName = "SAMPLE_OUTPUT.txt";
+      this.saveTextAsFile(content, fileName);
   }
 
   bgColor(column1:string){

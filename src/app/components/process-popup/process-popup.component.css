@@ -13,6 +13,7 @@
 .mat-stroked-button:not([class*=mat-elevation-z]), .mat-flat-button:not([class*=mat-elevation-z]) {
     float: right !important;
     border: 0 !important;
+    left: 20px;
 }
 .mat-toolbar { 
     background: #fff !important;
