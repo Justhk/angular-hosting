@@ -106,10 +106,10 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   }
 
   showProcessPopup() {
-    var lable2 = (<HTMLInputElement>document.getElementById("lable2")).value;
-    var lable3 = (<HTMLInputElement>document.getElementById("lable3")).value;
-    var lable4 = (<HTMLInputElement>document.getElementById("lable4")).value;
-    this.processService.populateForm(lable2, lable3, lable4);
+    var label2 = (<HTMLInputElement>document.getElementById("label2")).value;
+    var label3 = (<HTMLInputElement>document.getElementById("label3")).value;
+    var label4 = (<HTMLInputElement>document.getElementById("label4")).value;
+    this.processService.populateForm(label2, label3, label4);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "20%";
     this.dialog.open(ProcessPopupComponent, dialogConfig);
