@@ -1,0 +1,79 @@
+<div class="main-div">
+    <mat-card class="matcard first">
+        <mat-card-title>Text T111</mat-card-title>
+        <div class="row">
+            <div class="button-div">
+                <button mat-button (click)="showButtonPopup()">Button_121</button>
+            </div>
+            <div class="process-div">
+                <fieldset style="border-radius: 5px;border: 1px black solid">
+                    <legend style="margin-left: 1em; padding: 0.2em 0.8em ">GB Text 1</legend>
+                    <form class="example-form">
+                        <div style="display: table-caption;">
+                            <mat-form-field class="example-full-width1" appearance="fill">
+                                <mat-label>Lable 2</mat-label>
+                                <input matInput id="lable2" name="lable2">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width2" appearance="fill">
+                                <mat-label>Lable 3</mat-label>
+                                <input matInput id="lable3" name="lable3">
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width1" appearance="fill">
+                                <mat-label>Lable 4</mat-label>
+                                <input matInput id="lable4" name="lable4">
+                            </mat-form-field>
+                            <button mat-button class="process-button" type="button" (click)="showProcessPopup()">Process</button>
+                        </div>
+                      </form>
+                  </fieldset>
+            </div>
+        </div>
+  </mat-card>
+  <mat-card class="matcard first">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8" style="width: 100%;">
+
+  <ng-container matColumnDef="COLUMN_0">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by COLUMN_0">
+        COLUMN_0
+    </th>
+    <td mat-cell *matCellDef="let element" [style.color]="textColor(element.COLUMN_0)"> {{element.COLUMN_0}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="COLUMN_1">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by COLUMN_1">
+        COLUMN_1
+    </th>
+    <td mat-cell *matCellDef="let element" [style.color]="textColor(element.COLUMN_0)"> {{element.COLUMN_1}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="COLUMN_2">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by COLUMN_2">
+        COLUMN_2
+    </th>
+    <td mat-cell *matCellDef="let element" [style.color]="textColor(element.COLUMN_0)"> {{element.COLUMN_2}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="COLUMN_3">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by COLUMN_3">
+        COLUMN_3
+    </th>
+    <td mat-cell *matCellDef="let element" [style.color]="textColor(element.COLUMN_0)"> {{element.COLUMN_3}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="COLUMN_4">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by COLUMN_4">
+        COLUMN_4
+    </th>
+    <td mat-cell *matCellDef="let element" [style.color]="textColor(element.COLUMN_0)"> {{element.COLUMN_4}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [style.background-color]="bgColor(row.COLUMN_0)" (click)="selectRow($event, row)" id="tbl-tr-{{row.COLUMN_0}}" (dblclick)="showDetails(row)"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+  </mat-card>
+</div>

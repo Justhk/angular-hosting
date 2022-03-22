@@ -1,0 +1,67 @@
+.matcard.first,.matcard.second {
+    margin: 50px;
+}
+.matcard.first .row{
+    display: block;
+}
+.matcard.first .row .button-div{
+    display: inline-block;
+    width: 30%;
+}
+.matcard.first .row .process-div{
+    display: inline-block;
+    width: 70%;
+}
+.matcard.first .row .button-div button{
+    border: 1px solid red;
+    border-radius: 50px;
+    color: red;
+    background-color: skyblue;
+    width: 150px;
+    float: right;
+    left: calc(100% - 135%);
+    bottom: calc(100% - 150%);
+}
+.matcard.first .row .process-div button{
+    border: 1px solid green;
+    border-radius: 50px;
+    color: green;
+    background-color: white;
+    width: 150px;
+}
+.row-clicked{
+    background-color: blue !important;
+}
+.row-clicked td{
+    color: white !important;
+}
+.mat-toolbar-single-row {
+    display: inline-block !important;
+    box-sizing: border-box;
+    padding: 0px !important;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+.mat-stroked-button:not([class*=mat-elevation-z]), .mat-flat-button:not([class*=mat-elevation-z]) {
+    float: right !important;
+    border: 0 !important;
+}
+.mat-toolbar { 
+    background: #fff !important;
+}
+.example-full-width1{
+    width: 200%;
+}
+.example-full-width2{
+    width: 400%;
+}
+.process-button{
+    float: right;
+    left: 400px;
+    bottom: 62px;
+}
+form.example-form {
+    height: 200px;
+}

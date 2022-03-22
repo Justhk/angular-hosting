@@ -1,0 +1,16 @@
+.mat-toolbar-single-row {
+    display: inline-block !important;
+    box-sizing: border-box;
+    padding: 0px !important;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+.mat-stroked-button:not([class*=mat-elevation-z]), .mat-flat-button:not([class*=mat-elevation-z]) {
+    float: right !important;
+    border: 0 !important;
+}
+.mat-toolbar { 
+    background: #fff !important;
+}

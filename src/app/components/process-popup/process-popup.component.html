@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <span>Form3</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="processService.formprocess" class="normal-form">
+    <mat-grid-list cols="3" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="$key">
+          <mat-form-field>
+            <input formControlName="lable2" matInput placeholder="lable2">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="lable3" matInput placeholder="lable3">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="lable4" matInput placeholder="lable4">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>

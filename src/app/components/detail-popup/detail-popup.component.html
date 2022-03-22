@@ -1,0 +1,29 @@
+<mat-toolbar>
+    <span>Details</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar>
+  <form [formGroup]="service.form" class="normal-form">
+    <mat-grid-list cols="5" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <input type="hidden" formControlName="$key">
+          <mat-form-field>
+            <input formControlName="COLUMN_0" matInput placeholder="COLUMN_0">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="COLUMN_1" matInput placeholder="COLUMN_1">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="COLUMN_2" matInput placeholder="COLUMN_2">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="COLUMN_3" matInput placeholder="COLUMN_3">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="COLUMN_4" matInput placeholder="COLUMN_4">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
